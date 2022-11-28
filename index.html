@@ -5,87 +5,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="#">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bildaufteilung im Canvas</title>
+    <title>Webcam Quantization</title>
     <style>
-    body {margin:40px;
-    line-height: 100%;}
-    img {width: 50%;
-    display: inline;
+    body {margin:0px;
+    }
+    #webcam {
+       width:100%;
+       position: absolute;
+    }
+    #cnv-1{       
+        position: absolute;
+    }
+    #container{
+        width:100%
     }
     </style>  
 </head>
+
 <body>
-<h1>Bildaufteilung im Canvas</h1>
-
 <!-- Bilder & Canvases erzeugen -->
-<canvas id="cnv-1" width="300" height="300" style="margin-top:5px"></canvas> 
-<span style="display: none;"><img id="birone" src="bilder/birone.jpg" alt="bild-birone"></span>
-<canvas id="cnv-2" width="300" height="300" style="margin-top:5px"></canvas> 
-<!-- <span style="visibility: hidden;"><img id="r-scape" src="bilder/r-scape.JPG" alt="bild r-scape"></span> -->
-<canvas id="cnv-3" width="300" height="150" style="margin-top:5px"></canvas> 
-<!-- <span style="visibility: hidden;"><img id="nutz" src="bilder/nutz.jpg" alt="bild-nutz"></span> -->
-<canvas id="cnv-4" width="300" height="150" style="margin-top:5px"></canvas> 
-<!-- <span style="visibility: hidden;"><img id="tisch" src="bilder/tisch.JPG" alt="bild-tisch"></span> -->
+<div id="container">
+<canvas id="cnv-1"></canvas> 
 
+<video autoplay="true" id="webcam"></video>
+</div>
 <script src="helper.js"></script>
 
 <script>
-//Bild 1
-const img1 = document.getElementById('birone')
-const cnv1 = document.getElementById('cnv-1')
-const ctx1 = cnv1.getContext('2d')
-optimizeCanvas(cnv1)
-cnv1.style.background = 'deeppink'
-img1.addEventListener('load', () => {
-const nw = img1.naturalWidth
-const nh = img1.naturalHeight
-//erste 4 Argumente beziehen sich auf Bildpos. & Grösse, 
-//zweite 4 auf Bildausschnitt Position und Grösse
-ctx1.drawImage(img1, nw-2000, nh-1500, 1000, 1000, 0, 0, 300, 300)
-})
+const video = document.querySelector("#webcam")
+if(navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({video:true})
+    .then(function(stream){
+        video.srcObject =stream;
+    })
+    .catch(function(err0r){
+        console.log("Something went wrong!");
+    })
 
+    const vidcanvas = document.querySelector("#cnv-1")
+    const vidctx = vidcanvas.getContext("2d")
 
-//Bild 2
-const img2 = document.getElementById('birone')
-const cnv2 = document.getElementById('cnv-2')
-const ctx2 = cnv2.getContext('2d')
-
-optimizeCanvas(cnv2)
-cnv2.style.background = 'deeppink'
-img2.addEventListener('load', () => {
-const nw = img2.naturalWidth
-const nh = img2.naturalHeight
-//erste 4 Argumente beziehen sich auf Bildpos. & Grösse, 
-//zweite 4 auf Bildausschnitt Position und Grösse
-ctx2.drawImage(img2, nw-1000, nh-1500, 1000, 1000, 0, 0, 300, 300)
-})
-
-
-//Bild 3
-const img3 = document.getElementById('birone')
-const cnv3 = document.getElementById('cnv-3')
-const ctx3 = cnv3.getContext('2d')
-
-optimizeCanvas(cnv3)
-cnv3.style.background = 'deeppink'
-img3.addEventListener('load', () => {
-const nw = img3.naturalWidth
-const nh = img3.naturalHeight
-ctx3.drawImage(img3, nw-2000, nh-500, 1000, 1000, 0, 0, 300, 300)
-})
-
-//Bild 4
-const img4 = document.getElementById('birone')
-const cnv4 = document.getElementById('cnv-4')
-const ctx4 = cnv4.getContext('2d')
-
-optimizeCanvas(cnv4)
-cnv4.style.background = 'deeppink'
-img4.addEventListener('load', () => {
-const nw = img4.naturalWidth
-const nh = img4.naturalHeight
-ctx4.drawImage(img4, nw-1000, nh-500, 1000, 1000, 0, 0, 300, 300)
-})
+    video.addEventListener("loadeddata", () => {
+        vidcanvas.width = window.innerWidth
+        vidcanvas.height = window.innerHeight
+    })
+}
 </script> 
 </body>
 </html>
