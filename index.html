@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,7 @@
 
 <!-- Bilder & Canvases erzeugen -->
 <canvas id="cnv-1" width="300" height="300" style="margin-top:5px"></canvas> 
-<span style="display: none;"><img id="birone" src="bilder/birone.jpg" alt="bild-birone"></span>
+<span style="display: none;"><img id="still" src="bilder/still.jpg" alt="bild-still"></span>
 <canvas id="cnv-2" width="300" height="300" style="margin-top:5px"></canvas> 
 <!-- <span style="visibility: hidden;"><img id="r-scape" src="bilder/r-scape.JPG" alt="bild r-scape"></span> -->
 <canvas id="cnv-3" width="300" height="150" style="margin-top:5px"></canvas> 
@@ -31,7 +31,7 @@
 
 <script>
 //Bild 1
-const img1 = document.getElementById('birone')
+const img1 = document.getElementById('still')
 const cnv1 = document.getElementById('cnv-1')
 const ctx1 = cnv1.getContext('2d')
 optimizeCanvas(cnv1)
@@ -46,7 +46,7 @@ ctx1.drawImage(img1, nw-2000, nh-1500, 1000, 1000, 0, 0, 300, 300)
 
 
 //Bild 2
-const img2 = document.getElementById('birone')
+const img2 = document.getElementById('still')
 const cnv2 = document.getElementById('cnv-2')
 const ctx2 = cnv2.getContext('2d')
 
@@ -62,7 +62,7 @@ ctx2.drawImage(img2, nw-1000, nh-1500, 1000, 1000, 0, 0, 300, 300)
 
 
 //Bild 3
-const img3 = document.getElementById('birone')
+const img3 = document.getElementById('still')
 const cnv3 = document.getElementById('cnv-3')
 const ctx3 = cnv3.getContext('2d')
 
@@ -75,7 +75,7 @@ ctx3.drawImage(img3, nw-2000, nh-500, 1000, 1000, 0, 0, 300, 300)
 })
 
 //Bild 4
-const img4 = document.getElementById('birone')
+const img4 = document.getElementById('still')
 const cnv4 = document.getElementById('cnv-4')
 const ctx4 = cnv4.getContext('2d')
 
