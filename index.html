@@ -5,18 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="shortcut icon" href="#">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bildaufteilung im Canvas</title>
+    <title>Webcam Quantization</title>
     <style>
-    body {margin:40px;
-    line-height: 100%;}
-    img {width: 50%;
-    display: inline;
+    body {margin:0px;
+    }
+    #webcam {
+       width:100%;
+       position: absolute;
+    }
+    #cnv-1{       
+        position: absolute;
+    }
+    #container{
+        width:100%
     }
     </style>  
 </head>
-<body>
-<h1>Bildaufteilung im Canvas</h1>
 
+<body>
 <!-- Bilder & Canvases erzeugen -->
 <canvas id="cnv-1" width="300" height="300" style="margin-top:5px"></canvas> 
 <span style="display: none;"><img id="still" src="bilder/still.jpg" alt="bild-still"></span>
@@ -27,6 +33,8 @@
 <canvas id="cnv-4" width="300" height="150" style="margin-top:5px"></canvas> 
 <!-- <span style="visibility: hidden;"><img id="tisch" src="bilder/tisch.JPG" alt="bild-tisch"></span> -->
 
+<video autoplay="true" id="webcam"></video>
+</div>
 <script src="helper.js"></script>
 
 <script>
